@@ -21,11 +21,15 @@ Toggle your flashlight with a chopping motion — pick single or double chop, ge
 
 ## Build
 
-Uses the offline vendored Android toolchain (no network needed):
+With Android Studio: open the project and build — dependencies resolve from Google's Maven and Maven Central (internet needed on first build).
+
+From the command line:
 
 ```bash
-bash offline-build.sh assembleDebug
+./gradlew assembleDebug
 ```
+
+(The included `offline-build.sh` is an alternate wrapper for the author's vendored offline toolchain; it is not needed on a normal machine.)
 
 The APK is produced at `app/build/outputs/apk/debug/app-debug.apk`.
 Requires Android 8.0 (API 26)+. Grant the Camera permission on first launch (needed for `setTorchMode`), and disable battery optimization for ChopLight so background listening isn't killed.
