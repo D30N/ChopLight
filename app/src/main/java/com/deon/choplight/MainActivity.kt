@@ -17,6 +17,7 @@ import android.os.Bundle
 import android.provider.Settings
 import android.view.View
 import android.widget.Button
+import android.widget.RadioGroup
 import android.widget.SeekBar
 import android.widget.Switch
 import android.widget.TextView
@@ -41,6 +42,10 @@ class MainActivity : Activity(), SensorEventListener {
     private lateinit var seekSensitivity: SeekBar
     private lateinit var tvSensitivityValue: TextView
     private lateinit var motionMeter: MotionMeterView
+    private lateinit var radioGesture: RadioGroup
+    private lateinit var tvHowto: TextView
+    private lateinit var tvHomeTip: TextView
+    private var gestureRadioGuard = false
 
     private var sensorManager: SensorManager? = null
     private var meterActive = false
@@ -67,6 +72,24 @@ class MainActivity : Activity(), SensorEventListener {
         seekSensitivity = findViewById(R.id.seek_sensitivity)
         tvSensitivityValue = findViewById(R.id.tv_sensitivity_value)
         motionMeter = findViewById(R.id.motion_meter)
+        radioGesture = findViewById(R.id.radio_gesture)
+        tvHowto = findViewById(R.id.tv_howto)
+        tvHomeTip = findViewById(R.id.tv_home_tip)
+
+        gestureRadioGuard = true
+        radioGesture.check(
+            if (prefs.gestureMode == GestureMode.SINGLE) R.id.radio_single
+            else R.id.radio_double
+        )
+        gestureRadioGuard = false
+        radioGesture.setOnCheckedChangeListener { _, checkedId ->
+            if (gestureRadioGuard) return@setOnCheckedChangeListener
+            prefs.gestureMode =
+                if (checkedId == R.id.radio_single) GestureMode.SINGLE
+                else GestureMode.DOUBLE
+            refreshGestureTexts()
+        }
+        refreshGestureTexts()
 
         navHome.setOnClickListener { showPage(0) }
         navGestures.setOnClickListener { showPage(1) }
@@ -199,6 +222,22 @@ class MainActivity : Activity(), SensorEventListener {
     private fun updateSensitivityLabel() {
         val t = prefs.peakThreshold
         tvSensitivityValue.text = String.format("%.0f m/s^2", t)
+    }
+
+    // ---------- gesture mode ----------
+
+    private fun refreshGestureTexts() {
+        if (prefs.gestureMode == GestureMode.SINGLE) {
+            tvHowto.text = "1. Hold your phone firmly in one hand.\n" +
+                "2. One quick chop toggles the flashlight on or off.\n" +
+                "\nWorks with the screen on or off, as long as listening is enabled."
+            tvHomeTip.text = "Tip: one quick chop toggles the torch on or off."
+        } else {
+            tvHowto.text = "1. Hold your phone firmly in one hand.\n" +
+                "2. Two quick downward chops toggle the flashlight on or off.\n" +
+                "\nWorks with the screen on or off, as long as listening is enabled."
+            tvHomeTip.text = "Tip: two quick chops toggle the torch on or off."
+        }
     }
 
     // ---------- live meter ----------

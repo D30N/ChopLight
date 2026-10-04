@@ -152,40 +152,55 @@ im.save(f"{SHOT_DIR}/home.png")
 # ---------------- SCREEN 2: GESTURES ----------------
 im, d = base()
 header(d)
+# gesture mode card (new: single / double chop selector)
+card(d, 16, 116, 328, 124)
+txt(d, (32, 132), "Chop gesture", font(16, True), WHITE)
+
+
+def radio(d, cx, cy, label, checked):
+    r = 9
+    d.ellipse([(cx - r) * S, (cy - r) * S, (cx + r) * S, (cy + r) * S],
+              outline=RED if checked else GREY2, width=2 * S)
+    if checked:
+        d.ellipse([(cx - 4) * S, (cy - 4) * S, (cx + 4) * S, (cy + 4) * S], fill=RED)
+    txt(d, (cx + 16, cy), label, font(14), WHITE, anchor="lm")
+
+
+radio(d, 41, 172, "Single chop", False)
+radio(d, 199, 172, "Double chop", True)
+txt(d, (32, 196), "The selected gesture toggles the", font(12), GREY2)
+txt(d, (32, 214), "flashlight on and off.", font(12), GREY2)
 # sensitivity card
-card(d, 16, 120, 328, 150)
-txt(d, (32, 136), "Chop sensitivity", font(16, True), WHITE)
-txt(d, (32, 162), "12 m/s^2", font(14, True), RED)
-ty = 206  # slider track y
+card(d, 16, 252, 328, 140)
+txt(d, (32, 268), "Chop sensitivity", font(16, True), WHITE)
+txt(d, (32, 294), "12 m/s^2", font(14, True), RED)
+ty = 336  # slider track y
 d.line([32 * S, ty * S, 328 * S, ty * S], fill=TRACK, width=3 * S)
 px = 32 + (328 - 32) * 0.57  # progress 57
 d.line([32 * S, ty * S, px * S, ty * S], fill=RED, width=3 * S)
 d.ellipse([(px - 9) * S, (ty - 9) * S, (px + 9) * S, (ty + 9) * S], fill=RED)
-txt(d, (32, 222), "Left: gentler chops ignored.", font(12), GREY2)
-txt(d, (32, 240), "Right: even small shakes count.", font(12), GREY2)
+txt(d, (32, 352), "Left: gentler chops ignored.", font(12), GREY2)
+txt(d, (32, 370), "Right: even small shakes count.", font(12), GREY2)
 # motion meter card
-card(d, 16, 282, 328, 148)
-txt(d, (32, 298), "Live motion meter", font(16, True), WHITE)
-my = 340  # meter y
+card(d, 16, 404, 328, 140)
+txt(d, (32, 420), "Live motion meter", font(16, True), WHITE)
+my = 462  # meter y
 rr(d, [32, my, 328, my + 28], 6, TORCH_OFF)
 d.rounded_rectangle([32 * S, my * S, (32 + 296 * 0.62) * S, (my + 28) * S],
                     radius=6 * S, fill=RED)
 thx = 32 + 296 * 0.80  # threshold tick
 d.line([thx * S, (my - 4) * S, thx * S, (my + 32) * S], fill=WHITE, width=2 * S)
-txt(d, (32, my + 38), "Chop your phone and watch the bar spike", font(12), GREY2)
-txt(d, (32, my + 56), "past the white line.", font(12), GREY2)
+txt(d, (32, 502), "Chop your phone and watch the bar spike", font(12), GREY2)
+txt(d, (32, 520), "past the white line.", font(12), GREY2)
 # how-to card
-card(d, 16, 442, 328, 196)
-txt(d, (32, 458), "How to chop", font(16, True), WHITE)
+card(d, 16, 556, 328, 120)
+txt(d, (32, 572), "How to chop", font(16, True), WHITE)
 steps = ["1. Hold your phone firmly in one hand.",
-         "2. Make two quick downward chops.",
-         "3. The flashlight toggles on the second chop.",
-         "",
-         "Works with the screen on or off, as long as",
-         "listening is enabled."]
-yy = 488
+         "2. Two quick chops toggle it on/off.",
+         "Works with the screen on or off."]
+yy = 602
 for st in steps:
-    txt(d, (32, yy), st if st else " ", font(14), GREY)
+    txt(d, (32, yy), st, font(13), GREY)
     yy += 22
 navbar(d, 1)
 im.save(f"{SHOT_DIR}/gestures.png")

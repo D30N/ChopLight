@@ -37,6 +37,7 @@ class ChopDetectionService : Service(), SensorEventListener {
 
     private lateinit var prefs: Prefs
     private lateinit var detector: ChopDetector
+    private lateinit var gestureHandler: ChopGestureHandler
     private var sensorManager: SensorManager? = null
     private var sensorThread: HandlerThread? = null
     private var wakeLock: PowerManager.WakeLock? = null
@@ -52,6 +53,11 @@ class ChopDetectionService : Service(), SensorEventListener {
         super.onCreate()
         prefs = Prefs(this)
         detector = ChopDetector(peakThreshold = prefs.peakThreshold)
+        gestureHandler = ChopGestureHandler(
+            detector = detector,
+            mode = { prefs.gestureMode },
+            doToggle = { TorchController.toggle(this) },
+        )
         prefs.registerListener(prefsListener)
         createChannel()
     }
@@ -134,9 +140,7 @@ class ChopDetectionService : Service(), SensorEventListener {
         if (event.sensor.type != Sensor.TYPE_ACCELEROMETER) return
         val now = System.currentTimeMillis()
         val v = event.values
-        if (detector.process(v[0], v[1], v[2], now)) {
-            TorchController.toggle(this)
-        }
+        gestureHandler.onSample(v[0], v[1], v[2], now)
     }
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) = Unit

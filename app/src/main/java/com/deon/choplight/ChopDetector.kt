@@ -34,6 +34,23 @@ class ChopDetector(
     var lastLinearMagnitude = 0f
         private set
 
+    /**
+     * Invoked with the peak timestamp each time a motion peak is accepted
+     * (above threshold, past the refractory period) — regardless of whether it
+     * completes a pair. Lets callers implement single-peak gestures.
+     */
+    var onPeak: ((nowMs: Long) -> Unit)? = null
+
+    /**
+     * Record an externally-triggered toggle (e.g. single chop turning the
+     * torch off): restarts the pair cooldown and drops any pending first peak
+     * so a stale peak can never pair afterwards.
+     */
+    fun noteToggle(nowMs: Long) {
+        lastTriggerTime = nowMs
+        firstPeakTime = -1L
+    }
+
     fun reset() {
         gravity[0] = 0f; gravity[1] = 0f; gravity[2] = 0f
         prevMag = 0f
@@ -72,6 +89,7 @@ class ChopDetector(
             rising = false
             if (nowMs - lastPeakTime >= refractoryMs) {
                 lastPeakTime = nowMs
+                onPeak?.invoke(nowMs)
                 if (firstPeakTime < 0) {
                     firstPeakTime = nowMs
                 } else {

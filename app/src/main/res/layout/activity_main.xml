@@ -125,9 +125,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/tv_home_tip"
                     android:layout_marginTop="16dp"
                     android:gravity="center"
-                    android:text="Tip: make two quick chopping motions, like chopping vegetables."
+                    android:text="Tip: two quick chops toggle the torch on or off."
                     android:textColor="#888888"
                     android:textSize="13sp" />
             </LinearLayout>
@@ -149,6 +150,59 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/bg_card"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chop gesture"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <RadioGroup
+                        android:id="@+id/radio_gesture"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/radio_single"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:buttonTint="#B3261E"
+                            android:text="Single chop"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
+
+                        <RadioButton
+                            android:id="@+id/radio_double"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:buttonTint="#B3261E"
+                            android:text="Double chop"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
+                    </RadioGroup>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="The selected gesture toggles the flashlight on and off."
+                        android:textColor="#888888"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
                     android:background="@drawable/bg_card"
                     android:orientation="vertical"
                     android:padding="16dp">
@@ -238,11 +292,12 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/tv_howto"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:lineSpacingExtra="4dp"
-                        android:text="1. Hold your phone firmly in one hand.\n2. Make two quick downward chopping motions.\n3. The flashlight toggles on the second chop.\n\nWorks with the screen on or off, as long as listening is enabled."
+                        android:text="1. Hold your phone firmly in one hand.\n2. Two quick downward chops toggle the flashlight on or off.\n\nWorks with the screen on or off, as long as listening is enabled."
                         android:textColor="#B0B0B0"
                         android:textSize="14sp" />
                 </LinearLayout>

@@ -1,10 +1,11 @@
 # ChopLight
 
-Toggle your flashlight with Motorola's chop-chop gesture — two quick chopping motions, light on. Two more, light off.
+Toggle your flashlight with a chopping motion — pick single or double chop, gesture, light on/off.
 
 ## Features
 
-- **Chop-chop gesture detection** — accelerometer-based double-chop detection with a 2.5s cooldown
+- **Selectable chop gesture** — choose Single chop or Double chop in the Gestures tab (default: Double chop); the selected gesture toggles the flashlight
+- **Accelerometer-based detection** — peak detection with a 2.5s cooldown to avoid re-triggers
 - **Background listening** — a foreground service keeps detecting the gesture even with the screen off (partial wake lock)
 - **Sensitivity slider** — tune the detection threshold (6–20 m/s²)
 - **Live motion meter** — watch the accelerometer bar spike past the threshold line while you chop

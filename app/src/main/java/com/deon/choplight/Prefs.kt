@@ -21,6 +21,14 @@ class Prefs(context: Context) {
     val peakThreshold: Float
         get() = 20f - 14f * (sensitivity / 100f)
 
+    /** Which chop gesture toggles the flashlight. Default: double chop. */
+    var gestureMode: GestureMode
+        get() = if (sp.getString("gesture_mode", "double") == "single")
+            GestureMode.SINGLE else GestureMode.DOUBLE
+        set(v) = sp.edit().putString(
+            "gesture_mode", if (v == GestureMode.SINGLE) "single" else "double"
+        ).apply()
+
     fun registerListener(l: SharedPreferences.OnSharedPreferenceChangeListener) =
         sp.registerOnSharedPreferenceChangeListener(l)
 
