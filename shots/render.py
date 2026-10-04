@@ -101,7 +101,7 @@ def header(d):
     d.rectangle([0, 0, W, 104 * S], fill=RED)
     icon_torch(d, 42, 52, 17, WHITE)
     txt(d, (72, 28), "ChopLight", font(22, True), WHITE)
-    txt(d, (72, 60), "Chop twice to toggle the flashlight", font(13), RED_LT)
+    txt(d, (72, 60), "Chop to toggle the flashlight", font(13), RED_LT)
 
 
 def navbar(d, active=0):
@@ -227,7 +227,7 @@ txt(d, (32, 414), "iManager > Autostart > enable ChopLight", font(12), GREY2)
 # about card
 card(d, 16, 464, 328, 148)
 txt(d, (32, 480), "About", font(16, True), WHITE)
-txt(d, (32, 506), "ChopLight 1.0.1", font(13), GREY)
+txt(d, (32, 506), "ChopLight 1.0.0", font(13), GREY)
 txt(d, (32, 526), "Chop twice to toggle your flashlight.", font(13), GREY)
 txt(d, (32, 556), "This app was made by Deon", font(13), GREY)
 txt(d, (32, 580), "@deepak.deon", font(14, True), BLUE)
