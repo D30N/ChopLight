@@ -1,0 +1,22 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <!-- light rays -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="7"
+        android:strokeLineCap="round"
+        android:pathData="M48,23 L48,33 M31,31 L41,39 M77,31 L67,39 M25,37 L37,41 M83,37 L71,41" />
+    <!-- flashlight head -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M36,44 h36 l-10,14 h-16 z" />
+    <!-- flashlight body -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M50,58 h8 a5,5 0 0 1 5,5 v18 a5,5 0 0 1 -5,5 h-8 a5,5 0 0 1 -5,-5 v-18 a5,5 0 0 1 5,-5 z" />
+    <!-- switch detail -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M52,66 h4 v10 h-4 z" />
+</vector>
