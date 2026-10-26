@@ -56,6 +56,7 @@ class MainActivity : Activity(), SensorEventListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        recordAnalytics()
         setContentView(R.layout.activity_main)
         prefs = Prefs(this)
 
