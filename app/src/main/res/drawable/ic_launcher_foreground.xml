@@ -1,22 +1,64 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp" android:height="108dp"
     android:viewportWidth="108" android:viewportHeight="108">
-    <!-- light rays -->
-    <path
-        android:strokeColor="#FFFFFF"
-        android:strokeWidth="7"
-        android:strokeLineCap="round"
-        android:pathData="M48,23 L48,33 M31,31 L41,39 M77,31 L67,39 M25,37 L37,41 M83,37 L71,41" />
-    <!-- flashlight head -->
-    <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M36,44 h36 l-10,14 h-16 z" />
-    <!-- flashlight body -->
-    <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M50,58 h8 a5,5 0 0 1 5,5 v18 a5,5 0 0 1 -5,5 h-8 a5,5 0 0 1 -5,-5 v-18 a5,5 0 0 1 5,-5 z" />
-    <!-- switch detail -->
-    <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M52,66 h4 v10 h-4 z" />
+    <!-- Approved mockup F: inverted torch (white on black), diagonal,
+         3 rays, vibration arcs on both sides. Group rotation 45 = the
+         mockup's clockwise tilt, head upper-right. -->
+    <group
+        android:rotation="45"
+        android:pivotX="54"
+        android:pivotY="54">
+        <!-- vibration arcs (drawn first, torch covers their middles) -->
+        <path
+            android:fillColor="#00000000"
+            android:strokeColor="#FFFFFF"
+            android:strokeWidth="2.1"
+            android:pathData="M54,46.4 A14.8,14.8 0 0 0 54,76" />
+        <path
+            android:fillColor="#00000000"
+            android:strokeColor="#FFFFFF"
+            android:strokeWidth="2.1"
+            android:pathData="M54,46.4 A14.8,14.8 0 0 1 54,76" />
+        <path
+            android:fillColor="#00000000"
+            android:strokeColor="#FFFFFF"
+            android:strokeWidth="2.1"
+            android:pathData="M54,41.2 A20,20 0 0 0 54,81.2" />
+        <path
+            android:fillColor="#00000000"
+            android:strokeColor="#FFFFFF"
+            android:strokeWidth="2.1"
+            android:pathData="M54,41.2 A20,20 0 0 1 54,81.2" />
+        <!-- light rays -->
+        <path
+            android:fillColor="#00000000"
+            android:strokeColor="#FFFFFF"
+            android:strokeWidth="3"
+            android:strokeLineCap="round"
+            android:pathData="M54,22.8 L54,10.5 M47.7,23.2 L41.3,12.7 M60.3,23.2 L66.7,12.7" />
+        <!-- bezel -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M43.8,25.3 H64.2 A2.5,2.5 0 0 1 66.7,27.8 V36.5 A2.5,2.5 0 0 1 64.2,39 H43.8 A2.5,2.5 0 0 1 41.3,36.5 V27.8 A2.5,2.5 0 0 1 43.8,25.3 Z" />
+        <!-- reflector -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M41.3,39 L66.7,39 L62.4,54.8 L45.6,54.8 Z" />
+        <!-- body -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M48.6,54.8 H59.4 A3,3 0 0 1 62.4,57.8 V85.6 A3,3 0 0 1 59.4,88.6 H48.6 A3,3 0 0 1 45.6,85.6 V57.8 A3,3 0 0 1 48.6,54.8 Z" />
+        <!-- switch: black pill, white outline -->
+        <path
+            android:fillColor="#000000"
+            android:strokeColor="#FFFFFF"
+            android:strokeWidth="0.6"
+            android:pathData="M52.3,64.3 H55.7 A2.1,2.1 0 0 1 57.8,66.4 V70.6 A2.1,2.1 0 0 1 55.7,72.7 H52.3 A2.1,2.1 0 0 1 50.2,70.6 V66.4 A2.1,2.1 0 0 1 52.3,64.3 Z" />
+        <!-- base lines -->
+        <path
+            android:fillColor="#00000000"
+            android:strokeColor="#000000"
+            android:strokeWidth="0.9"
+            android:pathData="M45.6,82.7 L62.4,82.7 M45.6,85.2 L62.4,85.2" />
+    </group>
 </vector>
