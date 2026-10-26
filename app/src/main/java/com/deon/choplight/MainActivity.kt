@@ -134,9 +134,14 @@ class MainActivity : Activity(), SensorEventListener {
 
         findViewById<TextView>(R.id.tv_instagram).setOnClickListener { openInstagram() }
 
+        findViewById<Button>(R.id.btn_check_updates).setOnClickListener {
+            UpdateCheck.check(this, manual = true)
+        }
+
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
         showPage(0)
         ensurePermissions()
+        UpdateCheck.autoCheck(this)
     }
 
     override fun onResume() {
